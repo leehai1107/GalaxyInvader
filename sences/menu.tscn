@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://bqabyho67ep5e"]
+
+[ext_resource type="Script" path="res://scripts/Menu.cs" id="1_cpqo3"]
+[ext_resource type="PackedScene" uid="uid://botn0r2qyq6n2" path="res://sences/space_background.tscn" id="2_8c64k"]
+[ext_resource type="LabelSettings" uid="uid://cbr0ib2qafwr5" path="res://fonts/title_label_settings.tres" id="3_36hsu"]
+[ext_resource type="LabelSettings" uid="uid://b4kbn4k1bdngv" path="res://fonts/default_label_settings.tres" id="4_ql26i"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cpqo3")
+
+[node name="SpaceBackground" parent="." instance=ExtResource("2_8c64k")]
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Galaxy Invader"
+label_settings = ExtResource("3_36hsu")
+horizontal_alignment = 1
+
+[node name="StartLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Press 'space' to play"
+label_settings = ExtResource("4_ql26i")
+horizontal_alignment = 1

@@ -1,0 +1,48 @@
+[gd_scene load_steps=9 format=3 uid="uid://dtl77bdom7kdi"]
+
+[ext_resource type="Texture2D" uid="uid://bps3n0kedeihb" path="res://assets/laser_small.png" id="1_nh3tg"]
+[ext_resource type="Script" path="res://scripts/Lazer.cs" id="1_yflrv"]
+[ext_resource type="Script" path="res://scripts/MoveComponent.cs" id="2_8bxmb"]
+[ext_resource type="Script" path="res://scripts/ScaleComponent.cs" id="4_r1yua"]
+[ext_resource type="Script" path="res://scripts/FlashComponent.cs" id="5_85uyh"]
+[ext_resource type="Material" path="res://effects/white_flash_material.tres" id="6_1pive"]
+[ext_resource type="Script" path="res://scripts/HitboxComponent.cs" id="7_biaak"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ucmqy"]
+size = Vector2(4, 8)
+
+[node name="Lazer" type="Node2D"]
+script = ExtResource("1_yflrv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_nh3tg")
+
+[node name="MoveComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("2_8bxmb")
+actor = NodePath("..")
+velocity = Vector2(0, -200)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(4.76837e-07, 1)
+scale = Vector2(0.2, 0.4)
+
+[node name="ScaleComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("4_r1yua")
+actor = NodePath("../Sprite2D")
+scaleAmount = Vector2(2, 2)
+scaleDuration = 1.0
+
+[node name="FlashComponent" type="Node" parent="." node_paths=PackedStringArray("sprite")]
+script = ExtResource("5_85uyh")
+sprite = NodePath("../Sprite2D")
+flashMaterial = ExtResource("6_1pive")
+flashDuration = 0.1
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("7_biaak")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_ucmqy")

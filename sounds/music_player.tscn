@@ -3,6 +3,7 @@
 [ext_resource type="AudioStream" uid="uid://d06k3ln2okglc" path="res://sounds/music.ogg" id="1_bjsua"]
 
 [node name="MusicPlayer" type="AudioStreamPlayer"]
+process_mode = 3
 stream = ExtResource("1_bjsua")
 autoplay = true
 bus = &"Music"
